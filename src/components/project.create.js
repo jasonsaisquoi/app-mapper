@@ -1,6 +1,7 @@
 //create project
 
 import React, { Component } from 'react';
+import axios from 'axios';
 
 export default class ProjectCreate extends Component {
   constructor(props) {
@@ -28,6 +29,12 @@ export default class ProjectCreate extends Component {
 
   onSubmit(e) {
     e.preventDefault();
+    const obj = {
+      project_name: this.state.project_name,
+      project_summary: this.state.project_summary
+    };
+    axios.post('http://localhost:4000/project/add', obj)
+      .then(res => console.log(res.data));
     console.log(`The project is ${this.state.project_name}`);
   }
 
