@@ -27,9 +27,9 @@ export default class ProjectIndex extends Component {
 
   render() {
     return(
-      <div>
+      <div className="container">
         <h3>Project List</h3>
-        <div className="container">
+        <div className="cardgroup">
           {this.makeProjectCard()}
         </div>
       </div>
