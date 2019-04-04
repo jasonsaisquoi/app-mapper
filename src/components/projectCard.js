@@ -1,7 +1,19 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 class ProjectCard extends Component {
+  
+  constructor(props) {
+    super(props);
+    this.delete = this.delete.bind(this);
+  }
+  delete() {
+    axios.get(`http://localhost:4000/project/delete/${this.props.obj._id}`)
+      .then(console.log(`Deleted project!`))
+      .catch(err => console.log(err))
+  }
+  
   render() {
     return (
       // <div className="card mb-3" style={{width: 18 + "rem"}}>
@@ -26,10 +38,9 @@ class ProjectCard extends Component {
                 <div className="card-block px-3">
                   <h4 className="card-title">{this.props.obj.project_name}</h4>
                   <p className="card-text">{this.props.obj.project_summary} </p>
-                  <p className="card-text">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                   <a href="#" className="btn btn-primary">Read More</a>
                   <Link to={`/edit/${this.props.obj._id}`} className="btn btn-outline-success">Update </Link>
-                  <a href="#" className="btn btn-outline-danger">Delete</a>
+                  <button onClick={this.delete} className="btn btn-outline-danger">Delete</button>
                 </div>
               </div>
             </div>

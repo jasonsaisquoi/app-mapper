@@ -23,7 +23,7 @@ class App extends Component {
                   <Link to={"/create-post"} className="nav-link" href="#">Create Project</Link>
                 </li>
                 <li className="nav-item">
-                  <Link to={"/project-index"} className="nav-link" href="#">Post Index</Link>
+                  <Link to={"/project-index"} className="nav-link" href="#">Project Index</Link>
                 </li>
               </ul>
             </div>
