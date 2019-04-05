@@ -66,7 +66,7 @@ projectRoutes.route('/vote-up/:id').get( (req,res) => {
     if (!project) {
         res.status(404).send("data is not found!");
     } else {
-      project.score = project.score + 1;
+      project.upvotes = project.upvotes + 1;
       project.save();
     }
   })
@@ -77,7 +77,7 @@ projectRoutes.route('/vote-down/:id').get( (req,res) => {
     if (!project) {
         res.status(404).send("data is not found!");
     } else {
-      project.score = project.score - 1;
+      project.downvotes = project.downvotes + 1;
       project.save();
     }
   })

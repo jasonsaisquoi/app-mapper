@@ -53,7 +53,10 @@ class ProjectCard extends Component {
                   <div className="btn-group">
                     <button onClick={this.upvote} className="btn btn-success">UpVote <i className="far fa-thumbs-up"></i></button>
                     <button onClick={this.downvote} className="btn btn-info">Issue <i className="fas fa-question-circle"></i></button>
-                    <button className="btn btn-outline-primary">{this.props.obj.score}</button>
+                    <button className="btn btn-outline-primary">
+                    <i className="far fa-thumbs-up"></i> {this.props.obj.upvotes}</button>
+                    <button className="btn btn-outline-secondary">
+                    <i className="far fa-question-circle"></i> {this.props.obj.downvotes}</button>
                   </div>
                 </div>
               </div>
