@@ -52,4 +52,21 @@ projectRoutes.route('/delete/:id').get( (req, res) => {
   });
 });
 
+//Comment Routes
+projectRoutes.post("/posts/:postId/comments", (req,res) => {
+  const comment = new Comment(req.body);
+
+  //save instance of comment model to DB
+  comment
+    .save()
+    .then(comment => {
+      //redirect to the route
+      return res.redirect('/');
+    })
+    .catch(err=> {
+      console.log(err);
+    })
+})
+
+
 module.exports = projectRoutes;

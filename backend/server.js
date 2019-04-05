@@ -9,7 +9,8 @@ const PORT = 4000;
 const cors = require('cors');
 const mongoose = require('mongoose');
 const config = require('./DB.js');
-const projectRoutes = require('./controllers/project.route');
+const projectRoutes = require('./controllers/project.route')
+const comments = require('./controllers/comments')
 
 mongoose.Promise = global.Promise;
 mongoose.connect(config.DB, { useNewUrlParser: true }).then(
