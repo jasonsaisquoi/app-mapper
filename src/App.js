@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import HomePage from './components/homePage'
 import ProjectCreate from './components/project.create';
 import ProjectEdit from './components/project.edit';
 import ProjectIndex from './components/project.index';
@@ -11,7 +12,7 @@ class App extends Component {
       <Router>
         <div className="container">
           <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-            <Link to={"/"} className="navbar-brand" href="#">AppMapper</Link>
+            <Link to={"/home"} className="navbar-brand" href="#">AppMapper</Link>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span className="navbar-toggler-icon"></span>
             </button>
@@ -29,9 +30,9 @@ class App extends Component {
               </ul>
             </div>
           </nav>
-          <h1>Welcome to App Mapper!</h1>
         </div>      
         <Switch>
+          <Route exact path="/" component= { HomePage} />
           <Route path="/create-post" component = { ProjectCreate } />
           <Route path="/edit/:id" component = { ProjectEdit }/>
           <Route path="/project-index" component = { ProjectIndex }/>
