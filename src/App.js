@@ -21,7 +21,7 @@ class App extends Component {
                 <li className="nav-item active">
                   <Link to={"/"} className="nav-link" href="#">Home <span className="sr-only">(current)</span></Link>
                 </li>
-                <li ClassName="nav-item"><a className="nav-link">Log In</a>
+                <li className="nav-item"><a className="nav-link">Log In</a>
                 </li>
                 <li className="nav-item">
                   <Link to={"/create-post"} className="nav-link" href="#">Create Project</Link>
