@@ -8,12 +8,30 @@ class ProjectCard extends Component {
   constructor(props) {
     super(props);
     this.delete = this.delete.bind(this);
+    this.downvote = this.downvote.bind(this);
+    this.upvote = this.upvote.bind(this);
   }
   delete() {
     axios.get(`http://localhost:4000/project/delete/${this.props.obj._id}`)
       .then(console.log(`Deleted project!`))
       .catch(err => console.log(err))
       window.location.reload();
+  }
+
+
+  //voting
+  downvote(){
+    axios.get(`http://localhost:4000/project/vote-down/${this.props.obj._id}`)
+      .then(console.log('Downvoted'))
+      .catch(err => console.log(err))
+      window.location.reload()
+  }
+
+  upvote(){
+    axios.get(`http://localhost:4000/project/vote-up/${this.props.obj._id}`)
+      .then(console.log('upvoted'))
+      .catch(err => console.log(err))
+      window.location.reload()
   }
   
   render() {
@@ -33,8 +51,9 @@ class ProjectCard extends Component {
                   <Link to={`/edit/${this.props.obj._id}`} className="btn btn-outline-success">Update </Link>
                   <button onClick={this.delete} className="btn btn-outline-danger">Delete</button>
                   <div className="btn-group">
-                    <button className="btn btn-success">UpVote <i class="far fa-thumbs-up"></i></button>
-                    <button className="btn btn-info">Issue <i class="fas fa-question-circle"></i></button>
+                    <button onClick={this.upvote} className="btn btn-success">UpVote <i className="far fa-thumbs-up"></i></button>
+                    <button onClick={this.downvote} className="btn btn-info">Issue <i className="fas fa-question-circle"></i></button>
+                    <button className="btn btn-outline-primary">{this.props.obj.score}</button>
                   </div>
                 </div>
               </div>

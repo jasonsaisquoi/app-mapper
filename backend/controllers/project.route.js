@@ -34,7 +34,7 @@ projectRoutes.route('/:id').get( (req,res) => {
 })
 
 //edit project
-projectRoutes.route('/update/:id').post( (req,res) => {
+projectRoutes.route('/update/:id').put( (req,res) => {
   Project.findById(req.params.id, function(err, project) {
     if (!project)
       res.status(404).send("data is not found!");
@@ -58,6 +58,29 @@ projectRoutes.route('/delete/:id').get( (req, res) => {
     if (err) res.json(err)
     else res.json(project);
   });
+});
+
+//Voting Routes
+projectRoutes.route('/vote-up/:id').get( (req,res) => {
+  Project.findById(req.params.id, function(err, project) {
+    if (!project) {
+        res.status(404).send("data is not found!");
+    } else {
+      project.score = project.score + 1;
+      project.save();
+    }
+  })
+});
+
+projectRoutes.route('/vote-down/:id').get( (req,res) => {
+  Project.findById(req.params.id, function(err, project) {
+    if (!project) {
+        res.status(404).send("data is not found!");
+    } else {
+      project.score = project.score - 1;
+      project.save();
+    }
+  })
 });
 
 // //Comment Routes
