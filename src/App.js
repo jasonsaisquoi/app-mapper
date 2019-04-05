@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import ProjectCreate from './components/project.create';
 import ProjectEdit from './components/project.edit';
 import ProjectIndex from './components/project.index';
+import ProjectPage from './components/projectPage';
 
 class App extends Component {
   render() {
@@ -34,6 +35,7 @@ class App extends Component {
           <Route path="/create-post" component = { ProjectCreate } />
           <Route path="/edit/:id" component = { ProjectEdit }/>
           <Route path="/project-index" component = { ProjectIndex }/>
+          <Route path="/:id" component = {ProjectPage} />
         </Switch>
       </Router>
     );
