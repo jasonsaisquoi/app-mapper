@@ -46,27 +46,27 @@ projectRoutes.route('/update/:id').post( (req,res) => {
 
 //delete project
 projectRoutes.route('/delete/:id').get( (req, res) => {
-  Project.findByIdAndRemove({_id: req.params.id}, (err, project) => {
+  Project.findOneAndDelete({_id: req.params.id}, (err, project) => {
     if (err) res.json(err)
-    else res.json('successfully deleted!');
+    else res.json(project);
   });
 });
 
-//Comment Routes
-projectRoutes.post("/posts/:postId/comments", (req,res) => {
-  const comment = new Comment(req.body);
+// //Comment Routes
+// projectRoutes.post("/posts/:postId/comments", (req,res) => {
+//   const comment = new Comment(req.body);
 
-  //save instance of comment model to DB
-  comment
-    .save()
-    .then(comment => {
-      //redirect to the route
-      return res.redirect('/');
-    })
-    .catch(err=> {
-      console.log(err);
-    })
-})
+//   //save instance of comment model to DB
+//   comment
+//     .save()
+//     .then(comment => {
+//       //redirect to the route
+//       return res.redirect('/');
+//     })
+//     .catch(err=> {
+//       console.log(err);
+//     })
+// })
 
 
 module.exports = projectRoutes;

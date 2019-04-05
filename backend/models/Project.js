@@ -2,18 +2,10 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-let Project = new Schema({
-  project_name: {
-    type: String
-  },
-  project_summary: {
-    type: String
-  },
-  Score: {
-    type: Number
-  }
-},{
-  collection: 'project'
-});
+let ProjectSchema = new Schema({
+  project_name: String,
+  project_summary: String,
+  score: {type: Number, default: 0}
+})
 
-module.exports = mongoose.model('Project', Project )
+module.exports = mongoose.model('Project', ProjectSchema )

@@ -36,6 +36,8 @@ export default class ProjectCreate extends Component {
     axios.post('http://localhost:4000/project/add', obj)
       .then(res => console.log(res.data));
     console.log(`The project is ${this.state.project_name}`);
+    this.props.history.push('/project-index');
+    window.location.reload();
   }
 
   render() {

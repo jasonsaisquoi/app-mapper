@@ -13,22 +13,11 @@ class ProjectCard extends Component {
     axios.get(`http://localhost:4000/project/delete/${this.props.obj._id}`)
       .then(console.log(`Deleted project!`))
       .catch(err => console.log(err))
+      window.location.reload();
   }
   
   render() {
     return (
-      // <div className="card mb-3" style={{width: 18 + "rem"}}>
-      //   <img className="card-img-top" src="..." alt="Card image cap" />
-      //   <div className="card-body">
-      //     <h5 className="card-title">{this.props.obj.project_name}</h5>
-      //     <p className="card-text">{this.props.obj.project_summary}</p>
-      //     <a href="#" class="btn btn-primary">Details</a>
-      //   </div>
-      //   <div className="btn-group">
-      //     <button className="btn btn-primary">Edit</button>
-      //     <button className="btn btn-danger">Delete</button>
-      //   </div>
-      // </div>
       <div className="container py-3">
         <div className="card">
           <div className="row ">
@@ -43,6 +32,10 @@ class ProjectCard extends Component {
                   <button className="btn btn-secondary active">Comment</button>
                   <Link to={`/edit/${this.props.obj._id}`} className="btn btn-outline-success">Update </Link>
                   <button onClick={this.delete} className="btn btn-outline-danger">Delete</button>
+                  <div className="btn-group">
+                    <button className="btn btn-success">UpVote <i class="far fa-thumbs-up"></i></button>
+                    <button className="btn btn-info">Issue <i class="fas fa-question-circle"></i></button>
+                  </div>
                 </div>
               </div>
             </div>

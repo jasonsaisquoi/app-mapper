@@ -12,8 +12,8 @@ export default class ProjectEdit extends Component {
     this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
-      project_name: '',
-      project_summary: ''
+      project_name: this.props.project_name,
+      project_summary: this.props.project_summary
     }
   }
   
@@ -47,7 +47,8 @@ export default class ProjectEdit extends Component {
     axios.post('http://localhost:4000/project/update/'+this.props.match.params.id, obj)
         .then(res => console.log(res.data));
     
-    this.props.history.push('/index');
+    this.props.history.push('/project-index');
+    window.location.reload();
   }
 
   render() {
@@ -60,7 +61,7 @@ export default class ProjectEdit extends Component {
               <input 
                 type="text" 
                 className="form-control" 
-                value={this.state.project_name}
+                value={this.props.project_name}
                 onChange={this.onChangeProjectName}
                 />
           </div>
@@ -69,7 +70,7 @@ export default class ProjectEdit extends Component {
               <textarea
                 rows="5" 
                 className="form-control" 
-                value={this.state.project_summary}
+                value={this.props.project_summary}
                 onChange={this.onChangeProjectSummary}
                 />
           </div>
