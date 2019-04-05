@@ -51,7 +51,7 @@ class ProjectCard extends Component {
                   <Link to={`/edit/${this.props.obj._id}`} className="btn btn-outline-success">Update </Link>
                   <button onClick={this.delete} className="btn btn-outline-danger">Delete</button>
                   <div className="btn-group flex-wrap">
-                    <button onClick={this.upvote} className="btn btn-success">UpVote <i className="far fa-thumbs-up"></i></button>
+                    <button onClick={this.upvote} className="btn btn-success">UpVote <i class="fas fa-thumbs-up"></i></button>
                     <button onClick={this.downvote} className="btn btn-info">Issue <i className="fas fa-question-circle"></i></button>
                     <button className="btn btn-outline-primary">
                     <i className="far fa-thumbs-up"></i> {this.props.obj.upvotes}</button>
