@@ -25,6 +25,14 @@ projectRoutes.route('/').get( (req,res) => {
   })
 });
 
+//individual project
+projectRoutes.route('/:id').get( (req,res) => {
+  Project.findById(req.params.id, (err, project) => {
+    if (err) return console.log(err);
+    else res.json(project);
+  })
+})
+
 //edit project
 projectRoutes.route('/update/:id').post( (req,res) => {
   Project.findById(req.params.id, function(err, project) {
