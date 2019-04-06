@@ -47,18 +47,18 @@ class ProjectCard extends Component {
                   <h4 className="card-title">{this.props.obj.project_name}</h4>
                   <p className="card-text">{this.props.obj.project_summary} </p>
                   <Link to={`/${this.props.obj._id}`} className="btn btn-primary active">Read More</Link>
-                  <button className="btn btn-secondary active">Comment</button>
+                  <Link to={`/${this.props.obj._id}/comments`} className="btn btn-secondary active">Comment</Link>
                   <Link to={`/edit/${this.props.obj._id}`} className="btn btn-outline-success">Update </Link>
                   <button onClick={this.delete} className="btn btn-outline-danger">Delete</button>
                   <div className="btn-group flex-wrap">
-                    <button onClick={this.upvote} className="btn btn-success">UpVote <i class="fas fa-thumbs-up"></i></button>
+                    <button onClick={this.upvote} className="btn btn-success">UpVote       <i className="fas fa-thumbs-up"></i></button>
                     <button onClick={this.downvote} className="btn btn-info">Issue <i className="fas fa-question-circle"></i></button>
                     <button className="btn btn-outline-primary">
-                    <i className="far fa-thumbs-up"></i> {this.props.obj.upvotes}</button>
+                      <i className="far fa-thumbs-up"></i> {this.props.obj.upvotes}</button>
                     <button className="btn btn-outline-info">
-                    <i className="far fa-question-circle"></i> {this.props.obj.downvotes}</button>
+                      <i className="far fa-question-circle"></i> {this.props.obj.downvotes}</button>
                     <button className="btn btn-outline-secondary">
-                    <i className="fas fa-comment-dots"></i> {this.props.obj.downvotes}</button>
+                      <i className="fas fa-comment-dots"></i> {this.props.obj.downvotes}</button>
                   </div>
                 </div>
               </div>

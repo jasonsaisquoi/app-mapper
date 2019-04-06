@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import CommentCreate from './components/comment.create'
 import HomePage from './components/homePage'
 import ProjectCreate from './components/project.create';
 import ProjectEdit from './components/project.edit';
@@ -10,7 +11,7 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div className="container">
+        <div className="container-fluid">
           <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
             <Link to={"/home"} className="navbar-brand" href="#">AppMapper</Link>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,7 +39,8 @@ class App extends Component {
           <Route path="/create-post" component = { ProjectCreate } />
           <Route path="/edit/:id" component = { ProjectEdit }/>
           <Route path="/project-index" component = { ProjectIndex }/>
-          <Route path="/:id" component = {ProjectPage} />
+          <Route exact path="/:id" component = {ProjectPage} />
+          <Route path="/:id/comments" component = { CommentCreate } />
         </Switch>
       </Router>
     );

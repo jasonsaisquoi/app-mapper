@@ -4,6 +4,7 @@ const express = require('express');
 const projectRoutes = express.Router();
 
 let Project = require('../models/Project');
+let Comment = require('../models/Comment');
 
 //create project
 projectRoutes.route('/add').post( (req,res) => {
@@ -83,21 +84,28 @@ projectRoutes.route('/vote-down/:id').get( (req,res) => {
   })
 });
 
-// //Comment Routes
-// projectRoutes.post("/posts/:postId/comments", (req,res) => {
-//   const comment = new Comment(req.body);
+//Comment Routes
+//create project
+projectRoutes.route('/:id/comments').post( (req,res) => {
+  let comment = new Comment(req.body);
 
-//   //save instance of comment model to DB
-//   comment
-//     .save()
-//     .then(comment => {
-//       //redirect to the route
-//       return res.redirect('/');
-//     })
-//     .catch(err=> {
-//       console.log(err);
-//     })
-// })
+  comment.save()
+
+  .then(comment => {
+    return Project.findById(req.params.projectId);
+  })
+  .then(project => {
+    project.comments.unshift(comment);
+    return post.save()
+  })
+
+  .then(comment => {
+    res.status(200).json({'project': 'comment added in succesfully'});
+  })
+  .catch( err=> {
+    res.status(400).send("unable to save comment to database");
+  });
+});
 
 
 module.exports = projectRoutes;
