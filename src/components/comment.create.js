@@ -15,6 +15,14 @@ export default class CommentCreate extends Component {
     }
   }
 
+  componentDidMount(){
+    axios.get('http://localhost:4000/project/'+this.props._id)
+      .then(response => {
+        this.setState({project: response.data});
+      })
+      .catch( (err) => console.log(err));
+  }
+
   onContentChange(e){
     this.setState({
       content: e.target.value
@@ -29,7 +37,7 @@ export default class CommentCreate extends Component {
     axios.post(`http://localhost:4000/project/${this.props.match.params.id}/comments`, obj)
       .then(res => console.log(res.data));
     console.log(`comment: ${this.state.content}`);
-    this.props.history.push('/project-index');
+    this.props.history.push(`/project-index`);
     window.location.reload();
   };
 
