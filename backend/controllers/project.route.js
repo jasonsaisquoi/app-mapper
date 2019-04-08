@@ -35,7 +35,16 @@ projectRoutes.route('/:id').get( (req,res) => {
 })
 
 //Comment Routes
-//create project
+
+//get all comments
+projectRoutes.route('/:id/comments').get( (req,res) => {
+  Comment.find( (err, comments) => {
+    if (err) return console.log(err);
+    else res.json(comments);
+  })
+})
+
+//create comment
 projectRoutes.route('/:id/comments').post( (req,res) => {
   let comment = new Comment(req.body);
 

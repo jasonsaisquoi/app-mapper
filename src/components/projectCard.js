@@ -11,6 +11,7 @@ class ProjectCard extends Component {
     this.downvote = this.downvote.bind(this);
     this.upvote = this.upvote.bind(this);
   }
+  
   delete() {
     axios.get(`http://localhost:4000/project/delete/${this.props.obj._id}`)
       .then(console.log(`Deleted project!`))
