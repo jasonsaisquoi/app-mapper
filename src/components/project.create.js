@@ -13,7 +13,6 @@ export default class ProjectCreate extends Component {
     this.state = {
       project_name: '',
       project_summary: '',
-      score: 0
     }
   }
   onChangeProjectName(e) {
