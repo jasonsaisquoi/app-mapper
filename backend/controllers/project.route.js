@@ -28,6 +28,28 @@ projectRoutes.route('/').get( (req,res) => {
   })
 });
 
+//get all comments
+projectRoutes.route('/comments').get( (req,res) => {
+  Comment.find( (err, comments) => {
+    if (err) return console.log(err);
+    else res.json(comments);
+  })
+})
+
+//delete comment
+projectRoutes.route('/:id/delete/:commentId').get( (req,res) => {
+  Project.findById(req.params.id).then( project => {
+    project.comments.shift();
+    })
+    .then(Comment.findOneAndDelete({_id: req.params.commentId}, (err, comment) => {
+      if (err) res.json(err)
+      else{
+          res.json(comment)
+        }
+    })
+  )
+});
+
 //individual project
 projectRoutes.route('/:id').get( (req,res) => {
   // Project.findById(req.params.id, (err, project) => {
@@ -43,13 +65,7 @@ projectRoutes.route('/:id').get( (req,res) => {
 
 //Comment Routes
 
-//get all comments
-projectRoutes.route('/:id/comments').get( (req,res) => {
-  Comment.find( (err, comments) => {
-    if (err) return console.log(err);
-    else res.json(comments);
-  })
-})
+
 
 //create comment
 projectRoutes.route('/:id/comments').post( (req,res) => {
@@ -75,15 +91,6 @@ projectRoutes.route('/:id/comments').post( (req,res) => {
   });
 });
 
-//delete comment
-projectRoutes.route('/:id/delete/:commentId').get( (req,res) => {
-  Project.findById(req.params.id).then(
-    Comment.findOneAndDelete({_id: req.params.commentId}, (err, comment) => {
-      if (err) res.json(err)
-      else res.json(comment);
-    })
-  )
-});
 
 //edit project
 projectRoutes.route('/update/:id').put( (req,res) => {

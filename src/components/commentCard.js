@@ -1,8 +1,20 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 class CommentCard extends Component {
+
+  constructor(props) {
+    super(props);
+    this.delete = this.delete.bind(this);
+  }
   
+  delete() {
+    axios.get(`http://localhost:4000/${this.props}/delete${this.props.commentId}`)
+      .then(console.log('deleted comment!'))
+      .catch(err => console.log(err))
+      window.location.reload();
+  }
 
   render() { 
     return (
@@ -14,7 +26,7 @@ class CommentCard extends Component {
               </div> */}
               <div className="col-md-8 px-3">
                 <div className="card-block px-3">
-                  <p className="card-header">{this.props.obj}</p>
+                  <p className="card-header">{this.props.obj.content}</p>
                   <p className="card-header">{this.props.commentId}</p>
                   <div className="btn-group flex-wrap">
                     <button className="btn btn-success">UpVote <i className="fas fa-thumbs-up"></i></button>
@@ -26,7 +38,7 @@ class CommentCard extends Component {
                     <button className="btn btn-outline-secondary">
                       <i className="fas fa-comment-dots"></i></button>
                   </div>
-                  <button className="btn btn-outline-danger">Delete</button>
+                  <button onClick={this.delete} className="btn btn-outline-danger">Delete</button>
                 </div>
               </div>
             </div>

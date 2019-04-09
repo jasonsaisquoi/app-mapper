@@ -21,7 +21,8 @@ export default class ProjectIndex extends Component {
 
   makeProjectCard() {
     return this.state.project.map( (object, i) => {
-      return <ProjectCard obj={object} key={i} indice={i} delete = { (ind) => this.deleteItem(ind)} />
+      console.log(object);
+      return <ProjectCard projectId={object._id} obj={object} key={i} indice={i} delete = { (ind) => this.deleteItem(ind)} />
     })
   }
 

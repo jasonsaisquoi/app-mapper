@@ -16,6 +16,7 @@ class ProjectPage extends Component {
   componentDidMount() {
     axios.get('http://localhost:4000/project/'+this.props.match.params.id)
       .then(response => {
+        console.log(this.props);
         this.setState({
           project_name: response.data.project_name,
           project_summary: response.data.project_summary,
@@ -28,11 +29,15 @@ class ProjectPage extends Component {
   makeCommentCard() {
     return this.state.comments.map(
       (object, i) => {  
-        return <CommentCard obj={object.content} commentId={object._id}
-        key={i} indice={i} />
+        return <CommentCard obj={object} commentId={object._id}
+        key={i} indice={i} delete = { (ind) => this.deleteItem(ind)} />
       }
     )
   }
+
+  deleteItem(index){
+		this.setState({comments : this.state.comments.filter((_,i) => i !== index)});
+	}
 
   render() { 
     return (
