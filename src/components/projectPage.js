@@ -38,6 +38,7 @@ class ProjectPage extends Component {
     return (
       <div className="container">
         <h1>{this.state.project_name}</h1>
+        <h2>{this.state.project_summary}</h2>
         <div className="container">
           {this.makeCommentCard()}
         </div>
