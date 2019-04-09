@@ -15,6 +15,7 @@ class CommentCard extends Component {
               <div className="col-md-8 px-3">
                 <div className="card-block px-3">
                   <p className="card-header">{this.props.obj}</p>
+                  <p className="card-header">{this.props.commentId}</p>
                   <div className="btn-group flex-wrap">
                     <button className="btn btn-success">UpVote <i className="fas fa-thumbs-up"></i></button>
                     <button className="btn btn-info">Issue <i className="fas fa-question-circle"></i></button>
