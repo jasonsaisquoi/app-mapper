@@ -27,12 +27,8 @@ class ProjectPage extends Component {
 
   makeCommentCard() {
     return this.state.comments.map(
-
-
-
-
       (object, i) => {  
-        return <CommentCard obj={object}
+        return <CommentCard obj={object.content.toString()}
         key={i} indice={i} />
       }
     )
