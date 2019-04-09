@@ -22,10 +22,9 @@ class ProjectCard extends Component {
 
   //voting
   downvote(){
-    axios.get(`http://localhost:4000/project/vote-down/${this.props.obj._id}`)
+    axios.get(`http://localhost:4000/project/vote-down/${this.props._id}`)
       .then(console.log('Downvoted'))
       .catch(err => console.log(err))
-      window.location.reload()
   }
 
   upvote(){
@@ -53,7 +52,7 @@ class ProjectCard extends Component {
                   <button onClick={this.delete} className="btn btn-outline-danger">Delete</button>
                   <div className="btn-group flex-wrap">
                     <button onClick={this.upvote} className="btn btn-success">UpVote       <i className="fas fa-thumbs-up"></i></button>
-                    <button onClick={this.downvote} className="btn btn-info">Issue <i className="fas fa-question-circle"></i></button>
+                    <Link to={`this.props.obj._id}/comments`} className="btn btn-info" onClick={this.downvote}> Issue <i className="fas fa-question-circle"></i></Link>
                     <button className="btn btn-outline-primary">
                       <i className="far fa-thumbs-up"></i> {this.props.obj.upvotes}</button>
                     <button className="btn btn-outline-info">
