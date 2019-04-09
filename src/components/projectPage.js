@@ -23,15 +23,13 @@ class ProjectPage extends Component {
         })
       })
       .catch( (err) => console.log(err))
-    }
-    // axios.get('http://localhost:4000/project/'+this.props.id+'/comments')
-    // .then(response => {
-    //     this.setState({
-    //       comments: response.data
-    //     })
-    //   })
-    // .catch( (err) => console.log(err))
-    // }
+ 
+    axios.get(`http://localhost:4000/project/${this.props.obj}/comments`)
+      .then(response => {
+        console.log(response.data);
+      })
+      .catch( (err) => console.log(err));
+  }
 
   makeCommentCard() {
     return this.state.comments.map(

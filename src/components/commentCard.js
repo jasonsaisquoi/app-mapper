@@ -6,6 +6,14 @@ class CommentCard extends Component {
     super(props);
   }
 
+  // componentDidMount(){
+  //   axios.get(`http://localhost:4000/project/${this.props.obj}/comments`)
+  //     .then(response => {
+  //       console.log(response.data);
+  //     })
+  //     .catch( (err) => console.log(err));
+  // }
+
   render() { 
     return (
         <p>{this.props.obj}</p>
