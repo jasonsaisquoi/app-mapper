@@ -9,7 +9,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const config = require('./DB.js');
 const projectRoutes = require('./controllers/project.route')
-const userRoutes = require('./controllers/user.route')
+const authRoutes = require('./controllers/auth')
 
 const app = express();
 
@@ -25,6 +25,7 @@ app.use(bodyParser.json());
 
 //import routes
 app.use('/project', projectRoutes);
+app.use('/auth', authRoutes);
 
 app.listen(PORT, function(){
   console.log('Server is running on Port:',PORT);

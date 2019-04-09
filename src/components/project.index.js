@@ -19,10 +19,18 @@ export default class ProjectIndex extends Component {
       .catch( (err) => console.log(err));
   }
 
+  makeRandomColor(){
+    let r = Math.floor(Math.random() * 256);
+    let g = Math.floor(Math.random() * 256);
+    let b = Math.floor(Math.random() * 256);
+    let bgColor = `rgb(${r},${g},${b})`;
+    return bgColor;
+  }
+
   makeProjectCard() {
     return this.state.project.map( (object, i) => {
       console.log(object);
-      return <ProjectCard projectId={object._id} obj={object} key={i} indice={i} delete = { (ind) => this.deleteItem(ind)} />
+      return <ProjectCard color={this.makeRandomColor()} projectId={object._id} obj={object} key={i} indice={i} delete = { (ind) => this.deleteItem(ind)} />
     })
   }
 

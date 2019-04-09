@@ -40,7 +40,7 @@ class ProjectCard extends Component {
         <div className="card">
           <div className="row ">
               <div className="col-md-4">
-                <img src="https://placeholdit.imgix.net/~text?txtsize=38&txt=400%C3%97400&w=400&h=400" className="w-100" />
+                <div className="w-100 h-100" style={{background: this.props.color}}/>
               </div>
               <div className="col-md-8 px-3">
                 <div className="card-block px-3">
