@@ -29,7 +29,7 @@ class ProjectPage extends Component {
   makeCommentCard() {
     return this.state.comments.map(
       (object, i) => {  
-        return <CommentCard obj={object} commentId={object._id}
+        return <CommentCard projectId={this.props.match.params.id} obj={object} commentId={object._id}
         key={i} indice={i} delete = { (ind) => this.deleteItem(ind)} />
       }
     )

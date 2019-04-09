@@ -10,7 +10,7 @@ class CommentCard extends Component {
   }
   
   delete() {
-    axios.get(`http://localhost:4000/${this.props}/delete${this.props.commentId}`)
+    axios.get(`http://localhost:4000/project/${this.props.projectId}/delete/${this.props.commentId}`)
       .then(console.log('deleted comment!'))
       .catch(err => console.log(err))
       window.location.reload();
