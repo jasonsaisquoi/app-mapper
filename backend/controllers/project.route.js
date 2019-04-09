@@ -75,6 +75,16 @@ projectRoutes.route('/:id/comments').post( (req,res) => {
   });
 });
 
+//delete comment
+projectRoutes.route('/:id/delete/:commentId').get( (req,res) => {
+  Project.findById(req.params.id).then(
+    Comment.findOneAndDelete({_id: req.params.commentId}, (err, comment) => {
+      if (err) res.json(err)
+      else res.json(comment);
+    })
+  )
+});
+
 //edit project
 projectRoutes.route('/update/:id').put( (req,res) => {
   Project.findById(req.params.id, function(err, project) {
