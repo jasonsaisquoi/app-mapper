@@ -39,9 +39,9 @@ class ProjectCard extends Component {
       <div className="container py-3">
         <div className="card">
           <div className="row ">
-            {/* <div className="col-md-4">
+              <div className="col-md-4">
                 <img src="https://placeholdit.imgix.net/~text?txtsize=38&txt=400%C3%97400&w=400&h=400" className="w-100" />
-              </div> */}
+              </div>
               <div className="col-md-8 px-3">
                 <div className="card-block px-3">
                   <h4 className="card-title">{this.props.obj.project_name}</h4>
@@ -56,9 +56,9 @@ class ProjectCard extends Component {
                     <button className="btn btn-outline-primary">
                       <i className="far fa-thumbs-up"></i> {this.props.obj.upvotes}</button>
                     <button className="btn btn-outline-info">
-                      <i className="far fa-question-circle"></i> {this.props.obj.downvotes}</button>
+                      <i className="far fa-question-circle"></i> {this.props.obj.comments.length}</button>
                     <button className="btn btn-outline-secondary">
-                      <i className="fas fa-comment-dots"></i> {this.props.obj.downvotes}</button>
+                      <i className="fas fa-comment-dots"></i> {this.props.obj.comments.length}</button>
                   </div>
                 </div>
               </div>

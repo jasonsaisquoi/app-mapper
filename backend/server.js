@@ -9,6 +9,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const config = require('./DB.js');
 const projectRoutes = require('./controllers/project.route')
+const userRoutes = require('./controllers/user.route')
 
 const app = express();
 
