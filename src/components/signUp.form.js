@@ -34,12 +34,12 @@ class SignUpForm extends Component {
       username: this.state.username,
       password: this.state.password
     };
-    axios.post('http://localhost:4000//auth/sign-up', obj)
+    axios.post('http://localhost:4000/auth/sign-up', obj)
       .then(res => console.log(res.data)).catch(err => {
         console.log(err);
       } );
     console.log(`The user saved is ${this.state.username}`);
-    this.props.history.push('/');
+    this.props.history.push('/project-index');
     window.location.reload();
   }
 
@@ -47,12 +47,14 @@ class SignUpForm extends Component {
     return (
       <div className="container" style={{marginTop:20}}>
         <h2 style={{textAlign: "center"}}>Sign Up</h2>
-        <form>
+        <form onSubmit={this.onSubmit}>
           <div className = "form-group">
             <label>Username</label>
             <input 
               type="text" 
               className="form-control"
+              value={this.state.username}
+              onChange={this.onChangeUsername}
               />
           </div>
           <div className = "form-group">
@@ -60,6 +62,8 @@ class SignUpForm extends Component {
             <input 
               type="text" 
               className="form-control"
+              value={this.state.password}
+              onChange={this.onChangePassword}
               />
           </div>
           <div className="form-group">
