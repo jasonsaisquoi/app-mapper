@@ -6,6 +6,7 @@ import ProjectCreate from './components/project.create';
 import ProjectEdit from './components/project.edit';
 import ProjectIndex from './components/project.index';
 import ProjectPage from './components/projectPage';
+import SignUpForm from './components/signUp.form';
 
 class App extends Component {
   render() {
@@ -27,6 +28,10 @@ class App extends Component {
                 <li className="nav-item"><a className="nav-link">Log Out</a>
                 </li>
                 <li className="nav-item">
+                  <Link to={"/auth/sign-up"}  className="nav-link">Sign Up
+                  </Link>
+                </li>
+                <li className="nav-item">
                   <Link to={"/create-post"} className="nav-link" href="#">Create Project</Link>
                 </li>
                 <li className="nav-item">
@@ -44,6 +49,7 @@ class App extends Component {
           <Route path="/project-index" component = { ProjectIndex }/>
           <Route exact path="/:id" component = {ProjectPage} />
           <Route path="/:id/comments" component = { CommentCreate } />
+          <Route exact path="/auth/sign-up" component = {SignUpForm} />
         </Switch>
       </Router>
     );

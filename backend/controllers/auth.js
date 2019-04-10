@@ -5,12 +5,12 @@ const authRoutes = express.Router();
 const User = require('../models/User')
 
 //Sign Up
-authRoutes.route(`/signup`).post( (req,res)=> {
+authRoutes.route(`/sign-up`).post( (req,res)=> {
   const user = new User(req.body);
   user
     .save()
     .then( user => {
-      res.redirect("/");
+      res.redirect("/sign-up");
    })
   .catch (err => console.log(err));
 })
