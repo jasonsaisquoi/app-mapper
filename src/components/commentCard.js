@@ -25,10 +25,10 @@ class CommentCard extends Component {
       <div className="container py-3">
         <div className="card">
           <div className="row ">
-              <div className="col-md-3">
+              <div className="col-md-2">
                 <div className="w-50 h-100" style={{background: this.props.color}}/>
               </div>
-              <div className="col-md-9 px-3">
+              <div className="col-md-10 px-3">
                 <div className="card-block px-3">
                   <p className="card-header">{this.props.obj.content}</p>
                   <div className="btn-group flex-wrap">
