@@ -21,7 +21,7 @@ class App extends Component {
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
               <ul className="navbar-nav mr-auto">
                 <li className="nav-item active">
-                  <Link to={"/"} className="nav-link" href="#">Home <span className="sr-only">(current)</span></Link>
+                  <Link to={"/home"}  className="nav-link">Home <span className="sr-only">(current)</span></Link>
                 </li>
                 <li className="nav-item"><a className="nav-link">Log In</a>
                 </li>
@@ -47,9 +47,9 @@ class App extends Component {
           <Route path="/create-post" component = { ProjectCreate } />
           <Route path="/edit/:id" component = { ProjectEdit }/>
           <Route path="/project-index" component = { ProjectIndex }/>
-          <Route exact path="/:id" component = {ProjectPage} />
+          <Route exact path="/:id" component = { ProjectPage } />
           <Route path="/:id/comments" component = { CommentCreate } />
-          <Route exact path="/auth/sign-up" component = {SignUpForm} />
+          <Route path="/auth/sign-up" component = { SignUpForm } />
         </Switch>
       </Router>
     );

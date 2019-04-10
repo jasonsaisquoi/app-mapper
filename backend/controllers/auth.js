@@ -10,9 +10,11 @@ authRoutes.route(`/sign-up`).post( (req,res)=> {
   user
     .save()
     .then( user => {
-      res.redirect("/sign-up");
+      res.status(200).json({'user':'user added succesfully'})
    })
-  .catch (err => console.log(err));
+  .catch (err => {
+    res.status(400).send("unable to save user to the DB");
+  });
 })
 
 module.exports = authRoutes;

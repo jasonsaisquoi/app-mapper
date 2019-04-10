@@ -2,8 +2,47 @@
 
 
 import React, { Component } from 'react';
+import axios from 'axios';
 
 class SignUpForm extends Component {
+
+  constructor(props) {
+    super(props);
+    this.onChangeUsername = this.onChangeUsername.bind(this);
+    this.onChangePassword = this.onChangePassword.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+
+    this.state = {
+      username: '',
+      password: '',
+    }
+  }
+  onChangeUsername(e) {
+    this.setState({
+      username: e.target.value
+    });
+  }
+  onChangePassword(e) {
+    this.setState({
+      password: e.target.value
+    });
+  }
+
+  onSubmit(e) {
+    e.preventDefault();
+    const obj = {
+      username: this.state.username,
+      password: this.state.password
+    };
+    axios.post('http://localhost:4000//auth/sign-up', obj)
+      .then(res => console.log(res.data)).catch(err => {
+        console.log(err);
+      } );
+    console.log(`The user saved is ${this.state.username}`);
+    this.props.history.push('/');
+    window.location.reload();
+  }
+
   render() {
     return (
       <div className="container" style={{marginTop:20}}>
