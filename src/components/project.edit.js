@@ -45,7 +45,7 @@ export default class ProjectEdit extends Component {
       project_summary: this.state.project_summary
     };
     axios.put('http://localhost:4000/project/update/'+this.props.match.params.id, obj)
-        .then(res => console.log(res.data));
+        .then(res => console.log(res.data)).catch(err => console.log(err));
     
     this.props.history.push('/project-index');
     window.location.reload();

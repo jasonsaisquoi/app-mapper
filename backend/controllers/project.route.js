@@ -61,6 +61,9 @@ projectRoutes.route('/:id').get( (req,res) => {
   Project.findById(req.params.id).populate('comments').then((project) => {
     res.json(project)
   })
+  .catch( err => {
+    console.log(err);
+  })
 })
 
 //Comment Routes

@@ -16,7 +16,11 @@ class CommentCard extends Component {
       window.location.reload();
   }
 
-  render() { 
+  render() {
+    
+    
+
+    
     return (
       <div className="container py-3">
         <div className="card">
@@ -30,13 +34,8 @@ class CommentCard extends Component {
                   <p className="card-header">{this.props.commentId}</p>
                   <div className="btn-group flex-wrap">
                     <button className="btn btn-success">UpVote <i className="fas fa-thumbs-up"></i></button>
-                    <button className="btn btn-info">Issue <i className="fas fa-question-circle"></i></button>
                     <button className="btn btn-outline-primary">
                       <i className="far fa-thumbs-up"></i></button>
-                    <button className="btn btn-outline-info">
-                      <i className="far fa-question-circle"></i></button>
-                    <button className="btn btn-outline-secondary">
-                      <i className="fas fa-comment-dots"></i></button>
                   </div>
                   <button onClick={this.delete} className="btn btn-outline-danger">Delete</button>
                 </div>
