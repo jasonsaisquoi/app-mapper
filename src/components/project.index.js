@@ -41,7 +41,7 @@ export default class ProjectIndex extends Component {
   render() {
     return(
       <div className="container">
-        <h2 style={{textAlign: "center", fontSize: 2+`em`, paddingTop: 10+'px'}}>Project List</h2>
+        <h2 style={{textAlign: "center", fontSize: 2+`em`, paddingTop: 10+'px'}}>Project Idea List</h2>
         <div className="cardgroup">
           {this.makeProjectCard()}
         </div>

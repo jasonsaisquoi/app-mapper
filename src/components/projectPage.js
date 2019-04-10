@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import CommentCard from './commentCard';
+import { Link } from 'react-router-dom';
 
 class ProjectPage extends Component {
 
@@ -12,6 +13,7 @@ class ProjectPage extends Component {
       project_summary: this.props.project_summary,
     }
   }
+  
 
   componentDidMount() {
     axios.get('http://localhost:4000/project/'+this.props.match.params.id)
@@ -26,10 +28,18 @@ class ProjectPage extends Component {
       .catch( (err) => console.log(err))
   }
 
+  makeRandomColor(){
+    let r = Math.floor(Math.random() * 256);
+    let g = Math.floor(Math.random() * 256);
+    let b = Math.floor(Math.random() * 256);
+    let bgColor = `rgb(${r},${g},${b})`;
+    return bgColor;
+  }
+
   makeCommentCard() {
     return this.state.comments.map(
       (object, i) => {  
-        return <CommentCard projectId={this.props.match.params.id} obj={object} commentId={object._id}
+        return <CommentCard projectId={this.props.match.params.id} obj={object} commentId={object._id} color={this.makeRandomColor()}
         key={i} indice={i} delete = { (ind) => this.deleteItem(ind)} />
       }
     )
@@ -48,7 +58,7 @@ class ProjectPage extends Component {
           <hr className="my-4" />
 
           <p className="lead">
-            <a className="btn btn-primary btn-lg" href="#" role="button">Comment</a>
+          <Link to={`/${this.props.match.params.id}/comments`} className="btn btn-secondary active">Comment</Link>
           </p>
         </div>
         <h2>Comments</h2>

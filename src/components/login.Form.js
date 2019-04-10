@@ -45,8 +45,8 @@ class LoginForm extends Component {
 
   render() {
     return (
-      <div className="container" style={{marginTop:20}}>
-        <h2 style={{textAlign: "center"}}>Sign Up</h2>
+      <div className="container" style={{marginTop:10}}>
+        <h2 style={{textAlign: "center"}}>Log In</h2>
         <form onSubmit={this.onSubmit}>
           <div className = "form-group">
             <label>Username</label>
