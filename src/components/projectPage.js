@@ -42,13 +42,22 @@ class ProjectPage extends Component {
   render() { 
     return (
       <div className="container">
-        <h1>{this.state.project_name}</h1>
-        <h2>{this.state.project_summary}</h2>
-        <div className="container">
+        <div className="jumbotron">
+          <h1 className="display-4"><small className="text-muted">Project Name: </small> {this.state.project_name}</h1>
+          <p className="lead">{this.state.project_summary}</p>
+          <hr className="my-4" />
+
+          <p className="lead">
+            <a className="btn btn-primary btn-lg" href="#" role="button">Comment</a>
+          </p>
+        </div>
+        <div class="container">
+          <h2>Comments</h2>
+          <hr />
           {this.makeCommentCard()}
         </div>
       </div>
-    );
+    )
   }
 }
  
