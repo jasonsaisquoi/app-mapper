@@ -7,10 +7,13 @@ const PORT = 4000;
 const cors = require('cors');
 const mongoose = require('mongoose');
 const config = require('./DB.js');
-const projectRoutes = require('./controllers/project.route')
-const authRoutes = require('./controllers/auth')
+const projectRoutes = require('./controllers/project.route');
+const authRoutes = require('./controllers/auth');
+const jwt = require('jsonwebtoken');
+const cookieParser = require('cookie-parser');
 
 const app = express();
+app.use(cookieParser());
 
 mongoose.Promise = global.Promise;
 mongoose.connect(config.DB, { useNewUrlParser: true }).then(
