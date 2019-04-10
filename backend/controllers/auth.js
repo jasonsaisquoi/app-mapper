@@ -28,4 +28,10 @@ authRoutes.route(`/sign-up`).post( (req,res)=> {
   });
 })
 
+//log out
+authRoutes.route('/logout').get( (req,res) => {
+  res.clearCookie('nToken');
+  res.status(200).send('cookie removed');
+});
+
 module.exports = authRoutes;
