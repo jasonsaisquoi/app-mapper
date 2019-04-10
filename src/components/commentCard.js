@@ -25,9 +25,6 @@ class CommentCard extends Component {
       <div className="container py-3">
         <div className="card">
           <div className="row ">
-            {/* <div className="col-md-4">
-                <img src="https://placeholdit.imgix.net/~text?txtsize=38&txt=400%C3%97400&w=400&h=400" className="w-100" />
-              </div> */}
               <div className="col-md-8 px-3">
                 <div className="card-block px-3">
                   <p className="card-header">{this.props.obj.content}</p>

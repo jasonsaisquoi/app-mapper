@@ -58,7 +58,7 @@ class ProjectCard extends Component {
                     <button className="btn btn-outline-info">
                       <i className="far fa-question-circle"></i> {this.props.obj.comments.length}</button>
                     <button className="btn btn-outline-secondary">
-                      <i className="fas fa-comment-dots"></i> {this.props.obj.comments.length}</button>
+                      <i className="fas fa-comment-dots"></i> {this.props.obj.comments.length + this.props.obj.downvotes}</button>
                   </div>
                 </div>
               </div>

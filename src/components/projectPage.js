@@ -51,11 +51,9 @@ class ProjectPage extends Component {
             <a className="btn btn-primary btn-lg" href="#" role="button">Comment</a>
           </p>
         </div>
-        <div class="container">
-          <h2>Comments</h2>
-          <hr />
-          {this.makeCommentCard()}
-        </div>
+        <h2>Comments</h2>
+        <hr />
+        {this.makeCommentCard()}
       </div>
     )
   }
