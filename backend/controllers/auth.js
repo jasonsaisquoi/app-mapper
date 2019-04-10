@@ -39,4 +39,33 @@ authRoutes.route('/login').get( (req, res) => {
   res.status(200).send('logged in!');
 })
 
+//log in post route
+authRoutes.route('/login').post( (req, res) => {
+  const username = req.body.username;
+  const password = req.body.password;
+
+  //find the username in the DB
+  User.findOne({username}, "username password")
+    .then(user => {
+      if (!user) {
+        return res.status(401).send({message: '401 Error: Wrong username or password'});
+      }
+      //check the password 
+        if (!isMatch) {
+          //password is wrong
+          return res.status(401).send ({message: "401 Error: Wrong username or password"})
+        }
+
+        //create jwt token
+        const token = jwt.sign({_id: user._id, username: user.username }, process.env.SECRET, {
+          expiresIn: "30 days"
+        });
+        //set the cookie and redirect
+        res.cookie("nToken", token, {maxAge: 900000, httpOnly: true });
+    })
+    .catch(err => {
+      console.log(err);
+    })
+})
+
 module.exports = authRoutes;

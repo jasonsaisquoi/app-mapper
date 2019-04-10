@@ -34,12 +34,13 @@ class LoginForm extends Component {
       username: this.state.username,
       password: this.state.password
     };
-    axios.get('http://localhost:4000/auth/login')
+    axios.post('http://localhost:4000/project/add', obj)
     .then(res => console.log(res.data))
     .catch(err => {
       console.log(err);
     })
-    alert("You logged in!");
+    this.props.history.push('/project-index');
+    window.location.reload();
   }
 
   render() {
