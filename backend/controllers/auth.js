@@ -34,4 +34,9 @@ authRoutes.route('/logout').get( (req,res) => {
   res.status(200).send('cookie removed');
 });
 
+//log in 
+authRoutes.route('/login').get( (req, res) => {
+  res.status(200).send('logged in!');
+})
+
 module.exports = authRoutes;

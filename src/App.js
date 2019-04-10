@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import CommentCreate from './components/comment.create'
-import HomePage from './components/homePage'
+import CommentCreate from './components/comment.create';
+import HomePage from './components/homePage';
+import LogoutButton from './components/buttons/logoutButton';
+import LoginForm from './components/login.Form';
 import ProjectCreate from './components/project.create';
 import ProjectEdit from './components/project.edit';
 import ProjectIndex from './components/project.index';
@@ -23,10 +25,9 @@ class App extends Component {
                 <li className="nav-item active">
                   <Link to={"/home"}  className="nav-link">Home <span className="sr-only">(current)</span></Link>
                 </li>
-                <li className="nav-item"><a className="nav-link">Log In</a>
+                <li className="nav-item"><Link to={"/login"} className="nav-link">Log In</Link>
                 </li>
-                <li className="nav-item"><a className="nav-link">Log Out</a>
-                </li>
+                <LogoutButton />
                 <li className="nav-item">
                   <Link to={"/auth/sign-up"}  className="nav-link">Sign Up
                   </Link>
@@ -42,13 +43,14 @@ class App extends Component {
           </nav>
         </div>      
         <Switch>
+          <Route path="/:id/comments" component = { CommentCreate } />
           <Route exact path="/" component= { HomePage} />
-          <Route path="/home" component= { HomePage} />
+          <Route path="/home" component = { HomePage} />
+          <Route path="/login" component = { LoginForm } /> 
           <Route path="/create-post" component = { ProjectCreate } />
           <Route path="/edit/:id" component = { ProjectEdit }/>
           <Route path="/project-index" component = { ProjectIndex }/>
           <Route exact path="/:id" component = { ProjectPage } />
-          <Route path="/:id/comments" component = { CommentCreate } />
           <Route path="/auth/sign-up" component = { SignUpForm } />
         </Switch>
       </Router>
