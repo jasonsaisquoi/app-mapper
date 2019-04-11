@@ -53,6 +53,7 @@ export default class ProjectCreate extends Component {
               className="form-control"
               value={this.state.project_name}
               onChange={this.onChangeProjectName}
+              required
               />
           </div>
           <div className = "form-group">

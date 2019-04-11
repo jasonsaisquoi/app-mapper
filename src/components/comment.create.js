@@ -53,7 +53,8 @@ export default class CommentCreate extends Component {
               className="form-control" 
               type="text" 
               value={this.state.content}
-              onChange={this.onContentChange}  
+              onChange={this.onContentChange} 
+              required 
             />
           </div>
           <div className="form-group">
