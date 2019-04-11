@@ -35,11 +35,7 @@ class LoginForm extends Component {
       password: this.state.password
     };
     console.log(obj);
-    axios.get(`http://localhost:4000/auth/login/`, obj)
-    .then(res => console.log(res.data))
-    .catch(err => {
-      console.log(err);
-    })
+
     this.props.history.push('/project-index');
     window.location.reload();
   }

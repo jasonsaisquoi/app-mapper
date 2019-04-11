@@ -10,11 +10,6 @@ class LogoutButton extends Component {
 
   onClick(e){
     e.preventDefault();
-    axios.get('http://localhost:4000/auth/logout')
-      .then(res => console.log(res.data))
-      .catch(err => {
-        console.log(err);
-      })
     alert("You logged out!");
   }
   

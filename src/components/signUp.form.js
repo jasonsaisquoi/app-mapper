@@ -34,12 +34,6 @@ class SignUpForm extends Component {
       username: this.state.username,
       password: this.state.password
     };
-    axios.post('http://localhost:4000/auth/sign-up', obj)
-      .then(res => console.log(res.data)).catch(err => {
-        console.log(err);
-      } );
-    console.log(`The user saved is ${this.state.username}`);
-    this.props.history.push('/project-index');
   }
 
   render() {
