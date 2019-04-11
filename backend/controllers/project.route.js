@@ -20,12 +20,13 @@ projectRoutes.route('/add').post( (req,res) => {
 
 //retrieve projects
 projectRoutes.route('/').get( (req,res) => {
-  Project.find( (err, projects) => {
-    if (err) return console.log(err);
-    else {
-      res.json(projects);
-    }
-  })
+  const currentUser = req.user;
+  Project.find({})
+    .then(projects => {
+      res.status(200).json(projects);
+      console.log(currentUser);
+    })
+    .catch(err => console.log(err));
 });
 
 //get all comments

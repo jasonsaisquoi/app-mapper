@@ -19,8 +19,8 @@ authRoutes.route(`/sign-up`).post( (req,res)=> {
   user
     .save()
     .then( user => {
-      let token = jwt.sign({_id: user._id}, process.env.SECRET, { expiresIn: "30 Days"});
-      res.cookie('nToken', token, {maxAge: 900000, httpOnly: true });
+      let token = jwt.sign({_id: user._id}, process.env.SECRET, { expiresIn: "60 Days"});
+      res.cookie('nToken', token, { maxAge: 900000, httpOnly: true });
       res.status(200).json({'user':'user added succesfully'})
    })
   .catch (err => {
@@ -34,34 +34,41 @@ authRoutes.route('/logout').get( (req,res) => {
   res.status(200).send('cookie removed');
 });
 
-//log in 
+// log in get route
 authRoutes.route('/login').get( (req, res) => {
   res.status(200).send('logged in!');
 })
 
 //log in post route
 authRoutes.route('/login').post( (req, res) => {
-  const username = req.body.username;
-  const password = req.body.password;
+  let username = req.body.username;
+  let password = req.body.password;
 
   //find the username in the DB
   User.findOne({username}, "username password")
     .then(user => {
       if (!user) {
-        return res.status(401).send({message: '401 Error: Wrong username or password'});
+        //user is not found
+        return res.status(401).send({message: '401 Error: Wrong username'});
       }
       //check the password 
+      user.comparePassword(password, (err, isMatch) => {
         if (!isMatch) {
           //password is wrong
-          return res.status(401).send ({message: "401 Error: Wrong username or password"})
+          return res.status(401).send({message: `401 Error: password`});
         }
-
-        //create jwt token
-        const token = jwt.sign({_id: user._id, username: user.username }, process.env.SECRET, {
-          expiresIn: "30 days"
-        });
-        //set the cookie and redirect
-        res.cookie("nToken", token, {maxAge: 900000, httpOnly: true });
+        // Create a token
+        const token = jwt.sign(
+          { _id: user._id, username: user.username }, 
+          process.env.SECRET, 
+            {
+            expiresIn: "60 days"
+            }
+          );
+          // Set a cookie
+          res.cookie("nToken", token, { maxAge: 900000, httpOnly: true });
+          res.status(200).json("logged in!");
+      });
     })
     .catch(err => {
       console.log(err);

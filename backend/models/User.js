@@ -5,7 +5,7 @@ const bcrypt = require("bcryptjs");
 const UserSchema = new Schema({
   createdAt: { type: Date },
   updatedAt: { type: Date },
-  password: { type: String, select: false },
+  password: { type: String},
   username: { type: String, required: true }
 });
 
@@ -27,8 +27,8 @@ UserSchema.pre("save", function(next) {
     bcrypt.hash(user.password, salt, (err,hash) => {
       user.password = hash;
       next();
-    })
-  })
+    });
+  });
 });
 
 //use regular functions again because of this binding problems

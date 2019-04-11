@@ -40,7 +40,6 @@ class SignUpForm extends Component {
       } );
     console.log(`The user saved is ${this.state.username}`);
     this.props.history.push('/project-index');
-    window.location.reload();
   }
 
   render() {
