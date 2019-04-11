@@ -47,7 +47,6 @@ app.use(checkAuth);
 app.use('/project', projectRoutes);
 app.use('/auth', authRoutes);
 
-
 app.listen(PORT, function(){
   console.log('Server is running on Port:',PORT);
 });

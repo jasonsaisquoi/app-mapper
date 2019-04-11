@@ -19,9 +19,11 @@ authRoutes.route(`/sign-up`).post( (req,res)=> {
   user
     .save()
     .then( user => {
+      console.log(user);
+      debugger;
       let token = jwt.sign({_id: user._id}, process.env.SECRET, { expiresIn: "60 Days"});
       res.cookie('nToken', token, { maxAge: 900000, httpOnly: true });
-      res.status(200).json({'user':'user added succesfully'})
+      res.status(200).json(token)
    })
   .catch (err => {
     res.status(400).send("unable to save user to the DB", { err: err});
