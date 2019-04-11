@@ -6,21 +6,26 @@ class CommentCard extends Component {
 
   constructor(props) {
     super(props);
+    this.upvote = this.upvote.bind(this);
     this.delete = this.delete.bind(this);
+  }
+
+  upvote(){
+    axios.get(`http://localhost:4000/project/comments/vote-up/${this.props.obj._id}`)
+      .then(console.log('upvoted comment!'))
+      .catch(err => console.log(err));
+      window.location.reload();
   }
   
   delete() {
     axios.get(`http://localhost:4000/project/${this.props.projectId}/delete/${this.props.commentId}`)
       .then(console.log('deleted comment!'))
-      .catch(err => console.log(err))
+      .catch(err => console.log(err));
+      debugger
       window.location.reload();
   }
 
   render() {
-    
-    
-
-    
     return (
       <div className="container py-3">
         <div className="card">
@@ -31,10 +36,11 @@ class CommentCard extends Component {
               <div className="col-md-10 px-3">
                 <div className="card-block px-3">
                   <p className="card-header">{this.props.obj.content}</p>
+                  <p className="card-header">{this.props.obj._id}</p>
                   <div className="btn-group flex-wrap">
-                    <button className="btn btn-success">UpVote <i className="fas fa-thumbs-up"></i></button>
+                    <button onClick={this.upvote} className="btn btn-success">UpVote <i className="fas fa-thumbs-up"></i></button>
                     <button className="btn btn-outline-primary">
-                      <i className="far fa-thumbs-up"></i></button>
+                      <i className="far fa-thumbs-up"> </i> {this.props.obj.score}</button>
                   </div>
                   <button onClick={this.delete} className="btn btn-outline-danger">Delete</button>
                 </div>

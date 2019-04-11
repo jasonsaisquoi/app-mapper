@@ -36,6 +36,21 @@ projectRoutes.route('/comments').get( (req,res) => {
   })
 })
 
+//upvote comment
+projectRoutes.route('/comments/vote-up/:id').get( (req,res) => {
+  Comment.findById(req.params.id, function(err, comment) {
+    if (!comment) {
+        res.status(404).send("comment is not found!");
+    } else {
+      if (comment.score >= 0) {
+        comment.score = comment.score + 1;
+      }
+      comment.save();
+    }
+  })
+});
+
+
 //delete comment
 projectRoutes.route('/:id/delete/:commentId').get( (req,res) => {
   Project.findById(req.params.id).then( project => {
@@ -122,7 +137,7 @@ projectRoutes.route('/delete/:id').get( (req, res) => {
   });
 });
 
-//Voting Routes
+//Project Voting Routes
 projectRoutes.route('/vote-up/:id').get( (req,res) => {
   Project.findById(req.params.id, function(err, project) {
     if (!project) {
