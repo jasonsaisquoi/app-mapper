@@ -37,6 +37,30 @@ projectRoutes.route('/comments').get( (req,res) => {
   })
 })
 
+//create comment
+projectRoutes.route('/:id/comments').post( (req,res) => {
+  let comment = new Comment(req.body);
+
+  comment.save()
+
+  .then(comment => {
+    const id = req.params.id;
+    return Project.findById(id);
+    console.log(id)
+  })
+  .then(project => {
+    project.comments.unshift(comment);
+    return project.save()
+  })
+
+  .then(comment => {
+    res.status(200).json({'project': 'comment added in succesfully'});
+  })
+  .catch( err=> {
+    res.status(400).send("unable to save comment to database");
+  });
+});
+
 //upvote comment
 projectRoutes.route('/comments/vote-up/:id').get( (req,res) => {
   Comment.findById(req.params.id, function(err, comment) {
@@ -76,6 +100,53 @@ projectRoutes.route('/:id/delete/:commentId').get( (req,res) => {
   )
 });
 
+projectRoutes.route('/:id/comments/:commentId/replies/').get((req, res) => {
+  let project;
+    Project.findById(req.params.id)
+      .then(p => {
+        project = p;
+        return Comment.findById(req.params.commentId);
+      })
+      .then(comment => {
+        res.status(200).json(comment);
+      })
+      .catch(err => {
+        console.log(err.message);
+      });
+  });
+  // CREATE REPLY
+    projectRoutes.route("/:id/comments/:commentId/replies/", (req, res) => {
+    console.log(req.body);
+})
+
+// CREATE REPLY
+projectRoutes.route("/:id/comments/:commentId/replies", (req, res) => {
+  // TURN REPLY INTO A COMMENT OBJECT
+  const reply = new Comment(req.body);
+  Project.findById(req.params.id)
+      .then(project => {
+          // FIND THE CHILD COMMENT
+          Promise.all([
+              reply.save(),
+              Comment.findById(req.params.commentId),
+          ])
+              .then(([reply, comment]) => {
+                  // ADD THE REPLY
+                  comment.comments.unshift(reply._id);
+
+                  return Promise.all([
+                      comment.save(),
+                  ]);
+              })
+              .then(() => {
+                  res.status(200).json(reply);
+              })
+              .catch(console.error);
+          // SAVE THE CHANGE TO THE PARENT DOCUMENT
+          return project.save();
+      })
+});
+
 //individual project
 projectRoutes.route('/:id').get( (req,res) => {
   // Project.findById(req.params.id, (err, project) => {
@@ -93,32 +164,6 @@ projectRoutes.route('/:id').get( (req,res) => {
 })
 
 //Comment Routes
-
-
-
-//create comment
-projectRoutes.route('/:id/comments').post( (req,res) => {
-  let comment = new Comment(req.body);
-
-  comment.save()
-
-  .then(comment => {
-    const id = req.params.id;
-    return Project.findById(id);
-    console.log(id)
-  })
-  .then(project => {
-    project.comments.unshift(comment);
-    return project.save()
-  })
-
-  .then(comment => {
-    res.status(200).json({'project': 'comment added in succesfully'});
-  })
-  .catch( err=> {
-    res.status(400).send("unable to save comment to database");
-  });
-});
 
 
 //edit project

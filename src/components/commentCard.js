@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-
+import { Link } from 'react-router-dom';
 class CommentCard extends Component {
 
   constructor(props) {
@@ -45,6 +45,7 @@ class CommentCard extends Component {
                   <div className="btn-group flex-wrap">
                     <button onClick={this.upvote} className="btn btn-success">UpVote <i className="fas fa-thumbs-up"></i></button>
                     <button onClick={this.downvote} className="btn btn-secondary">DownVote <i className="fas fa-thumbs-down"></i></button>
+                    <Link to={`/${this.props.projectId}/comments`} className="btn btn-secondary active">Reply</Link>
                     <button className="btn btn-outline-primary">
                       <i className="far fa-thumbs-up"> </i> {this.props.obj.score}</button>
                   </div>
