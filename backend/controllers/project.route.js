@@ -43,11 +43,21 @@ projectRoutes.route('/comments/vote-up/:id').get( (req,res) => {
     if (!comment) {
         res.status(404).send("comment is not found!");
     } else {
-      if (comment.score >= 0) {
-        comment.score = comment.score + 1;
-      }
-      comment.save();
+      comment.score = comment.score + 1;
     }
+    comment.save();
+  })
+});
+
+//downvote comment
+projectRoutes.route('/comments/vote-down/:id').get( (req,res) => {
+  Comment.findById(req.params.id, function(err, comment) {
+    if (!comment) {
+        res.status(404).send("comment is not found!");
+    } else {
+      comment.score = comment.score - 1;
+    }
+    comment.save();
   })
 });
 

@@ -7,10 +7,18 @@ class CommentCard extends Component {
     super(props);
     this.upvote = this.upvote.bind(this);
     this.delete = this.delete.bind(this);
+    this.downvote = this.downvote.bind(this);
   }
 
   upvote(){
     axios.get(`http://localhost:4000/project/comments/vote-up/${this.props.obj._id}`)
+      .then(console.log('upvoted comment!'))
+      .catch(err => console.log(err));
+      window.location.reload();
+  }
+
+  downvote(){
+    axios.get(`http://localhost:4000/project/comments/vote-down/${this.props.obj._id}`)
       .then(console.log('upvoted comment!'))
       .catch(err => console.log(err));
       window.location.reload();
@@ -36,6 +44,7 @@ class CommentCard extends Component {
                   <p className="card-header">{this.props.obj.content}</p>
                   <div className="btn-group flex-wrap">
                     <button onClick={this.upvote} className="btn btn-success">UpVote <i className="fas fa-thumbs-up"></i></button>
+                    <button onClick={this.downvote} className="btn btn-secondary">DownVote <i className="fas fa-thumbs-down"></i></button>
                     <button className="btn btn-outline-primary">
                       <i className="far fa-thumbs-up"> </i> {this.props.obj.score}</button>
                   </div>
