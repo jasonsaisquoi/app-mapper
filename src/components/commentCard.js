@@ -42,7 +42,9 @@ class CommentCard extends Component {
               <div className="col-md-10 px-3">
                 <div className="card-block px-3">
                   <p className="card-header">{this.props.obj.content}</p>
-                  <p className="card-header">{this.props.obj._id}</p>
+                  <p className="card-header">
+                  Standards-compliant webservices; integrate unleash bleeding-edge incubate channels embrace implement matrix front-end reinvent bandwidth tag embedded. Authentic wireless podcasts seize technologies incentivize rich-clientAPIs benchmark? Virtual best-of-breed mesh synergistic: killer holistic unleash; monetize B2B syndicate back-end viral, user-centric intuitive facilitate. Architectures value-added target feeds schemas syndicate web services channels markets back-end virtual dynamic benchmark markets design deliver recontextualize enable, recontextualize.
+                  </p>
                   <div className="btn-group flex-wrap">
                     <button onClick={this.upvote} className="btn btn-success">UpVote <i className="fas fa-thumbs-up"></i></button>
                     <button onClick={this.downvote} className="btn btn-secondary">DownVote <i className="fas fa-thumbs-down"></i></button>
